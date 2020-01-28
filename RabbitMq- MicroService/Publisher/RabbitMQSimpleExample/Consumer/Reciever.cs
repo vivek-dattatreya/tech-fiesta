@@ -13,7 +13,7 @@ namespace ConsoleApp1
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
-                channel.QueueDeclare("BasicQueue", false, false, false, null);
+                channel.QueueDeclare("UserQueue", false, false, false, null);
 
                 var consumer = new EventingBasicConsumer(channel);
 
@@ -24,7 +24,7 @@ namespace ConsoleApp1
                     Console.WriteLine("Recieved Following Message {0}:", message);
                 };
 
-                channel.BasicConsume("BasicQueue", true, consumer);
+                channel.BasicConsume("UserQueue", true, consumer);
 
 
                 Console.WriteLine("Press [Enter] to exit the Reciever App");
